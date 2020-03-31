@@ -1,5 +1,3 @@
-// Package hsub generates and tests the Hashed Subjects frequently used by
-// Pseudonym services.
 package hsub
 
 import (
