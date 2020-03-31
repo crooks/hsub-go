@@ -1,5 +1,3 @@
-package hsub
-
 /*
 Package hsub handles the encoding and decoding of a simple, anonymous message
 identification scheme.  The system was develop for use on Usenet where
@@ -39,3 +37,4 @@ non-compliant subjects.  Although errors are returned from the library, it is
 expected that during normal usage, these will be treated as non-colliding
 messages and ignored.
 */
+package hsub
