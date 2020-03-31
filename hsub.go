@@ -14,7 +14,7 @@ import (
 
 const (
 	ivByteLen      int = 8
-	hashMinByteLen     = 16
+	hashMinByteLen int = 16
 	hsubMinByteLen int = ivByteLen + hashMinByteLen
 	sha256ByteLen  int = 256 / 8
 	hsubMaxByteLen int = ivByteLen + sha256ByteLen
@@ -25,9 +25,9 @@ func init() {
 	assertAvailablePRNG()
 }
 
+// Assert that a cryptographically secure PRNG is available.  If it's not,
+// panic!
 func assertAvailablePRNG() {
-	// Assert that a cryptographically secure PRNG is available.
-	// Panic otherwise.
 	buf := make([]byte, 1)
 
 	_, err := io.ReadFull(rand.Reader, buf)
@@ -80,8 +80,9 @@ func DecodeString(hsubTxt string, pw []byte) (bool, error) {
 	return Decode(hsub, pw)
 }
 
-// Decode tests a given hSub against another generated with a given Passphrase.
-// True is returned if a collision occurs.
+// Decode generates a new hSub using a provided passphrase and compares it with
+// a provided hSub.  If the provided hsub is deemed valid and collides with the
+// generated hsub, the function returns True.
 func Decode(hsub, pw []byte) (bool, error) {
 	hsubLen := len(hsub)
 	if hsubLen < hsubMinByteLen {
